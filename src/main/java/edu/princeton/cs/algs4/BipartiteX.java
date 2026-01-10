@@ -68,19 +68,19 @@ public class BipartiteX {
     }
 
     private void bfs(Graph graph, int s) {
-        Queue<Integer> q = new Queue<Integer>();
+        Queue<Integer> queue = new Queue<Integer>();
         color[s] = WHITE;
         marked[s] = true;
-        q.enqueue(s);
+        queue.enqueue(s);
 
-        while (!q.isEmpty()) {
-            int v = q.dequeue();
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
             for (int w : graph.adj(v)) {
                 if (!marked[w]) {
                     marked[w] = true;
                     edgeTo[w] = v;
                     color[w] = !color[v];
-                    q.enqueue(w);
+                    queue.enqueue(w);
                 }
                 else if (color[w] == color[v]) {
                     isBipartite = false;

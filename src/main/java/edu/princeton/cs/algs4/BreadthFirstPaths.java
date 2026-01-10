@@ -107,21 +107,21 @@ public class BreadthFirstPaths {
 
     // breadth-first search from a single source
     private void bfs(Graph graph, int s) {
-        Queue<Integer> q = new Queue<Integer>();
+        Queue<Integer> queue = new Queue<Integer>();
         for (int v = 0; v < graph.V(); v++)
             distTo[v] = INFINITY;
         distTo[s] = 0;
         marked[s] = true;
-        q.enqueue(s);
+        queue.enqueue(s);
 
-        while (!q.isEmpty()) {
-            int v = q.dequeue();
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
             for (int w : graph.adj(v)) {
                 if (!marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
-                    q.enqueue(w);
+                    queue.enqueue(w);
                 }
             }
         }
@@ -129,20 +129,20 @@ public class BreadthFirstPaths {
 
     // breadth-first search from multiple sources
     private void bfs(Graph graph, Iterable<Integer> sources) {
-        Queue<Integer> q = new Queue<Integer>();
+        Queue<Integer> queue = new Queue<Integer>();
         for (int s : sources) {
             marked[s] = true;
             distTo[s] = 0;
-            q.enqueue(s);
+            queue.enqueue(s);
         }
-        while (!q.isEmpty()) {
-            int v = q.dequeue();
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
             for (int w : graph.adj(v)) {
                 if (!marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
-                    q.enqueue(w);
+                    queue.enqueue(w);
                 }
             }
         }

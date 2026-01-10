@@ -91,18 +91,18 @@ public class BreadthFirstDirectedPaths {
 
     // BFS from single source
     private void bfs(Digraph digraph, int s) {
-        Queue<Integer> q = new Queue<Integer>();
+        Queue<Integer> queue = new Queue<Integer>();
         marked[s] = true;
         distTo[s] = 0;
-        q.enqueue(s);
-        while (!q.isEmpty()) {
-            int v = q.dequeue();
+        queue.enqueue(s);
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
             for (int w : digraph.adj(v)) {
                 if (!marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
-                    q.enqueue(w);
+                    queue.enqueue(w);
                 }
             }
         }
@@ -110,20 +110,20 @@ public class BreadthFirstDirectedPaths {
 
     // BFS from multiple sources
     private void bfs(Digraph digraph, Iterable<Integer> sources) {
-        Queue<Integer> q = new Queue<Integer>();
+        Queue<Integer> queue = new Queue<Integer>();
         for (int s : sources) {
             marked[s] = true;
             distTo[s] = 0;
-            q.enqueue(s);
+            queue.enqueue(s);
         }
-        while (!q.isEmpty()) {
-            int v = q.dequeue();
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
             for (int w : digraph.adj(v)) {
                 if (!marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
-                    q.enqueue(w);
+                    queue.enqueue(w);
                 }
             }
         }

@@ -57,7 +57,8 @@ public class TarjanSCC {
 
     private boolean[] marked;        // marked[v] = has v been visited?
     private int[] id;                // id[v] = id of strong component containing v
-    private int[] low;               // low[v] = low number of v
+    private int[] low;               // low[v] = lowest preorder index of a vertex reachable from v
+                                     //          by following one (or more) tree edges and at most one back edge
     private int pre;                 // preorder number counter
     private int count;               // number of strongly-connected components
     private Stack<Integer> stack;
